@@ -43,11 +43,11 @@
   "size-limit": [
     {
       "path": "dist/hooray-table.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "500 KB"
     },
     {
       "path": "dist/hooray-table.esm.js",
-      "limit": "10 KB"
+      "limit": "250y KB"
     }
   ],
   "devDependencies": {
