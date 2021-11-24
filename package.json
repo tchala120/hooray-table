@@ -52,8 +52,10 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.3",
+    "@types/lodash": "^4.14.177",
     "@types/react": "^17.0.36",
     "@types/react-dom": "^17.0.11",
+    "@types/styled-components": "^5.1.15",
     "husky": "^7.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -66,6 +68,7 @@
     "antd": "^4.17.1",
     "classnames": "^2.3.1",
     "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "styled-components": "^5.3.3"
   }
 }
