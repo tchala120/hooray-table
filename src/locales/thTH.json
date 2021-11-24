@@ -1,0 +1,17 @@
+{
+  "selectedRow": "เลือก",
+  "totalItem": "รายการทั้งหมด",
+  "test": {
+    "nested": "สวัสดี"
+  },
+  "item": {
+    "plural": "รายการ",
+    "regular": "รายการ"
+  },
+  "filterDropDown": {
+    "searchInputPlaceholder": "ค้นหา...",
+    "searchButton": "ค้นหา",
+    "resetButton": "รีเซ็ต",
+    "filterButton": "กรอง"
+  }
+}

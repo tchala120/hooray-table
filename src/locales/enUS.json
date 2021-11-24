@@ -1,0 +1,20 @@
+{
+  "selectedRow": "Selected",
+  "totalItem": {
+    "plural": "Total items",
+    "regular": "Total item"
+  },
+  "test": {
+    "nested": "Hello world"
+  },
+  "item": {
+    "plural": "items",
+    "regular": "item"
+  },
+  "filterDropDown": {
+    "searchInputPlaceholder": "Search...",
+    "searchButton": "Search",
+    "resetButton": "Reset",
+    "filterButton": "Filter"
+  }
+}
