@@ -10,6 +10,28 @@
   "engines": {
     "node": ">=10"
   },
+  "title": "Hooray Table",
+  "keywords": [
+    "react",
+    "react-component",
+    "antd",
+    "table standard",
+    "hooray",
+    "frontend",
+    "ui"
+  ],
+  "homepage": "https://thetoon.vercel.com",
+  "bugs": {
+    "url": "https://github.com/tchala120/hooray-table/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tchala120/hooray-table"
+  },
+  "funding": {
+    "type": "kofi",
+    "url": "https://ko-fi.com/thetoon"
+  },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
