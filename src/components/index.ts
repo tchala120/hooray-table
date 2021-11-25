@@ -1,10 +1,5 @@
 import type { Key } from 'react'
 
-export type { ActionsRowProps } from './ActionsRow'
-export { default as ActionsRow } from './ActionsRow'
-
-export { default as FullWidthSpace } from './FullWidthSpace'
-
 export type { RowSelectorActionProps } from './RowSelectorAction'
 export { default as RowSelectorAction } from './RowSelectorAction'
 
