@@ -18,8 +18,8 @@ export const localeCode: LocaleCode = {
   thTH: 'thTH',
 }
 
-const localeEn: any = locale.enUS
-const localeTh: any = locale.thTH
+const localeEn = locale.enUS
+const localeTh = locale.thTH
 
 export const keyWithPlural = (key: string, type: TranslationType = 'DEFAULT', plural?: boolean) => {
   if (type === 'PLURAL') {
