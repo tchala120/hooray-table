@@ -1,18 +1,18 @@
 import React, { FC } from 'react'
-import { Dropdown, Menu } from 'antd'
+import { Dropdown as AntdDropDown, Menu } from 'antd'
 
 import FontAwesomeIcon from './FontAwesomeIcon'
 
-import type { ActionButton, ActionMenuInfo } from '.'
+import type { ActionButtonInfo, ActionMenuInfo } from '.'
 
-export interface HoorayDropDownProps {
-  menuList: ActionButton[]
+export interface DropDownProps {
+  menuList: ActionButtonInfo[]
   onDropDownMenuClick?: (value: ActionMenuInfo) => void
 }
 
 
-const HoorayDropDown: FC<HoorayDropDownProps> = ({ menuList, onDropDownMenuClick }) => {
-  const primaryMenu = menuList.find((item) => item.type === 'primary') as ActionButton
+const DropDown: FC<DropDownProps> = ({ menuList, onDropDownMenuClick }) => {
+  const primaryMenu = menuList.find((item) => item.type === 'primary') as ActionButtonInfo
   const existingMenuList = menuList.filter((item) => item.type !== 'primary')
 
   const menu = (
@@ -26,10 +26,10 @@ const HoorayDropDown: FC<HoorayDropDownProps> = ({ menuList, onDropDownMenuClick
   )
 
   return (
-    <Dropdown.Button type="primary" onClick={primaryMenu?.onClick} overlay={menu} trigger={['click']}>
+    <AntdDropDown.Button type="primary" onClick={primaryMenu?.onClick} overlay={menu} trigger={['click']}>
       {primaryMenu?.label}
-    </Dropdown.Button>
+    </AntdDropDown.Button>
   )
 }
 
-export default HoorayDropDown
+export default DropDown

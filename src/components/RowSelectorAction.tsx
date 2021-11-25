@@ -1,17 +1,17 @@
 import React, { FC } from 'react'
 import { Space } from 'antd'
 
-import HoorayDropDown from './HoorayDropDown'
+import DropDown from './DropDown'
 
 import { LocaleType, translation } from '../helpers/locale'
 
-import type { ActionButton, ActionMenuInfo } from '..'
+import type { ActionButtonInfo, ActionMenuInfo } from '..'
 
 export interface RowSelectorActionProps {
   locale?: LocaleType
   hasSelected?: boolean
   selectedRowCount?: number
-  menuList?: ActionButton[]
+  menuList?: ActionButtonInfo[]
   onDropDownMenuClick?: (value: ActionMenuInfo) => void
 }
 
@@ -24,7 +24,7 @@ const RowSelectorAction: FC<RowSelectorActionProps> = ({
 }) => {
   return (
     <Space>
-      <HoorayDropDown menuList={menuList} onDropDownMenuClick={onDropDownMenuClick} />
+      <DropDown menuList={menuList} onDropDownMenuClick={onDropDownMenuClick} />
       {hasSelected && (
         <span>
           {translation('selectedRow', locale)} {selectedRowCount}{' '}

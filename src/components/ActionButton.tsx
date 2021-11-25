@@ -2,21 +2,17 @@ import React, { FC } from 'react'
 import { Button, Space } from 'antd'
 
 import FontAwesomeIcon from './FontAwesomeIcon'
-import HoorayDropDown from './HoorayDropDown'
+import DropDown from './DropDown'
 
-import { ActionButton, ActionMenuInfo } from '..'
+import { ActionButtonInfo, ActionMenuInfo } from '..'
 
-export interface HoorayActionButtonProps {
-  menuList: ActionButton[]
+export interface ActionButtonProps {
+  menuList: ActionButtonInfo[]
   buttonDisplayLimit?: number
   onDropDownMenuClick?: (value: ActionMenuInfo) => void
 }
 
-const HoorayActionButton: FC<HoorayActionButtonProps> = ({
-  menuList,
-  buttonDisplayLimit = 5,
-  onDropDownMenuClick,
-}) => {
+const ActionButton: FC<ActionButtonProps> = ({ menuList, buttonDisplayLimit = 5, onDropDownMenuClick }) => {
   if (menuList.length < buttonDisplayLimit) {
     const sortMenuByButtonType = menuList.sort((a) => {
       if (a.type === 'primary') {
@@ -37,7 +33,7 @@ const HoorayActionButton: FC<HoorayActionButtonProps> = ({
     )
   }
 
-  return <HoorayDropDown menuList={menuList} onDropDownMenuClick={onDropDownMenuClick} />
+  return <DropDown menuList={menuList} onDropDownMenuClick={onDropDownMenuClick} />
 }
 
-export default HoorayActionButton
+export default ActionButton

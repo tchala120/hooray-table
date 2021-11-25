@@ -1,11 +1,11 @@
 import 'react-app-polyfill/ie11'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { ConfigProvider,Input,Table ,TablePaginationConfig } from 'antd'
+import { ConfigProvider,Input, Table as AntdTable,TablePaginationConfig } from 'antd'
 import styled from 'styled-components'
 import thTH from 'antd/lib/locale/th_TH'
 
-import { getColumnSearchProps, getSorterNumber, HoorayTable, FilterValue, ActionButton, DropDownFitlerType } from '../src/index'
+import { getColumnSearchProps, getSorterNumber, Table, FilterValue, ActionButtonInfo, DropDownFitlerType } from '../src/index'
 
 import 'antd/dist/antd.css'
 import './assets/globalStyle.css'
@@ -37,7 +37,7 @@ const App = () => {
   const rowSelection: TableRowSelection<any> = {
     selectedRowKeys,
     onChange: setSelectedRowKeys,
-    selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT, Table.SELECTION_NONE],
+    selections: [AntdTable.SELECTION_ALL, AntdTable.SELECTION_INVERT, AntdTable.SELECTION_NONE],
   }
 
   const hasSelected = selectedRowKeys.length > 0
@@ -83,7 +83,7 @@ const App = () => {
   return (
     <ConfigProvider locale={thTH} {...antdConfig}>
       <Container>
-        <HoorayTable
+        <Table
           title="Hello table title"
           dataSource={dataSource}
           columns={columns}
@@ -111,7 +111,7 @@ const App = () => {
   )
 }
 
-const menuList: ActionButton[] = [
+const menuList: ActionButtonInfo[] = [
   {
     key: '1',
     label: 'Action 1',

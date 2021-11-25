@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Col, ConfigProvider, Row, Space, Table, TablePaginationConfig, TableProps } from 'antd'
+import { Col, ConfigProvider, Row, Space, Table as AntdTable, TablePaginationConfig, TableProps as AntdTableProps } from 'antd'
 import thTH from "antd/lib/locale/th_TH"
 import enUS from "antd/lib/locale/en_US"
 import styled from 'styled-components'
@@ -8,17 +8,17 @@ import isNull from 'lodash/isNull'
 import mapValues from 'lodash/mapValues'
 
 import RowSelectorAction from './RowSelectorAction'
-import HoorayActionButton from './HoorayActionButton'
+import HoorayActionButton from './ActionButton'
 
 import { LocaleType, translation } from '../helpers/locale'
 
 import type { ColumnsType } from 'antd/lib/table/interface'
 import type { ConfigProviderProps } from 'antd/lib/config-provider'
 import type { SorterResult } from 'antd/lib/table/interface'
-import type { FilterValue, HoorayActionButtonProps } from '.'
+import type { FilterValue, ActionButtonProps } from '.'
 import type { RowSelectorActionProps } from './RowSelectorAction'
 
-export interface HoorayTableProps<RecordType extends object = any> extends Pick<TableProps<RecordType>, 'rowSelection' | 'pagination'> {
+export interface TableProps<RecordType extends object = any> extends Pick<AntdTableProps<RecordType>, 'rowSelection' | 'pagination'> {
   title?: string
   antdConfig?: ConfigProviderProps
   locale?: LocaleType
@@ -26,14 +26,14 @@ export interface HoorayTableProps<RecordType extends object = any> extends Pick<
   columns?: ColumnsType<RecordType>
   hidePagination?: boolean
   rowSelectorActionProps?: Omit<RowSelectorActionProps, 'locale'>
-  rowSelectorExtraActionProps?: HoorayActionButtonProps
+  rowSelectorExtraActionProps?: ActionButtonProps
   setSortInfo?: (sortInfo: SorterResult<any>) => void
   setPaginationInfo?: (paginationInfo: TablePaginationConfig) => void
   setFilterInfo?: (filterInfo: Record<string, FilterValue | null>) => void
   setSearchInfo?: (filterInfo: Record<string, FilterValue | null>) => void
 }
 
-const HoorayTable: FC<HoorayTableProps> = ({
+const Table: FC<TableProps> = ({
   title,
   locale = 'thTH',
   antdConfig,
@@ -92,7 +92,7 @@ const HoorayTable: FC<HoorayTableProps> = ({
             </div>
           )}
 
-          <Table
+          <AntdTable
             {...props}
             pagination={!hidePagination ? tablePagination : false}
             onChange={(pagination, filter, sorter) => {
@@ -118,7 +118,7 @@ const HoorayTable: FC<HoorayTableProps> = ({
   )
 }
 
-export default HoorayTable
+export default Table
 
 const TableContainer = styled.div`
   border-bottom: 1px solid #eee;
