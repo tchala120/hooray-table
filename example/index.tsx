@@ -5,13 +5,13 @@ import { ConfigProvider,Input,Table ,TablePaginationConfig } from 'antd'
 import styled from 'styled-components'
 import thTH from 'antd/lib/locale/th_TH'
 
-import { getColumnSearchProps, getSorterNumber, HoorayTable, FilterValue, ActionButton } from '../src/index'
+import { getColumnSearchProps, getSorterNumber, HoorayTable, FilterValue, ActionButton, DropDownFitlerType } from '../src/index'
 
 import 'antd/dist/antd.css'
 import './assets/globalStyle.css'
 
-import type { ColumnsType } from 'antd/lib/table'
-import type { Key, SorterResult, TableRowSelection } from 'antd/lib/table/interface'
+import type { ConfigProviderProps } from 'antd/lib/config-provider'
+import type { SorterResult, TableRowSelection, ColumnsType } from 'antd/lib/table/interface'
 
 const dataSource: any[] = []
 for (let i = 0; i < 46; i++) {
@@ -30,63 +30,65 @@ const App = () => {
   const [paginationInfo, setPaginationInfo] = React.useState<TablePaginationConfig>()
   const [filterInfo, setFilterInfo] = React.useState<Record<string, FilterValue | null>>()
   const [searchInfo, setSearchInfo] = React.useState<Record<string, FilterValue | null>>()
+  const [filterDropDownType, setFilterDropDownType] = React.useState<DropDownFitlerType>('SEARCH')
 
   const searchInputRef = React.useRef<Input | null>()
 
   const rowSelection: TableRowSelection<any> = {
     selectedRowKeys,
-    onChange: (values) => setSelectedRowKeys(values),
+    onChange: setSelectedRowKeys,
     selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT, Table.SELECTION_NONE],
   }
 
   const hasSelected = selectedRowKeys.length > 0
 
+  const antdConfig: ConfigProviderProps =  {
+    componentSize: "large",
+    space:{
+      size: 'large',
+    }
+  }
+
   console.log('Pagination information', paginationInfo)
   console.log('Sort information', getSorterNumber(sortInfo?.order))
   console.log('Filter information', filterInfo)
   console.log('Search information', searchInfo)
+  console.log("Filter drop down type", filterDropDownType)
 
-  const columns: ColumnsType<any> = [
+  const getColumnSearchPropsByDataIndex = (dataIndex: string) => getColumnSearchProps({
+    dataIndex,
+    locale: 'enUS',
+    searchInputRef,
+    setDropDownFilterType: (filterType) => setFilterDropDownType(filterType)
+  })
+
+  const columns: ColumnsType<string> = [
     {
-      ...getColumnSearchProps({
-        dataIndex: 'name',
-        searchInputRef,
-      }),
+      ...getColumnSearchPropsByDataIndex('name'),
       title: 'Name',
       dataIndex: 'name',
     },
     {
-      ...getColumnSearchProps({
-        dataIndex: 'age',
-        searchInputRef,
-      }),
+      ...getColumnSearchPropsByDataIndex('age'),
       title: 'Age',
       dataIndex: 'age',
     },
     {
-      ...getColumnSearchProps({
-        dataIndex: 'address',
-        searchInputRef,
-      }),
+      ...getColumnSearchPropsByDataIndex('address'),
       title: 'Address',
       dataIndex: 'address',
     },
   ]
 
   return (
-    <ConfigProvider
-      locale={thTH}
-      componentSize="large"
-      space={{
-        size: 'large',
-      }}
-    >
+    <ConfigProvider locale={thTH} {...antdConfig}>
       <Container>
         <HoorayTable
           title="Hello table title"
           dataSource={dataSource}
           columns={columns}
           locale="enUS"
+          antdConfig={antdConfig}
           rowSelection={rowSelection}
           rowSelectorActionProps={{
             hasSelected,
@@ -96,6 +98,8 @@ const App = () => {
           }}
           rowSelectorExtraActionProps={{
             menuList,
+            buttonDisplayLimit: 2,
+            onDropDownMenuClick: (value) => console.log('Secondary extra click', value.key),
           }}
           setSortInfo={setSortInfo}
           setPaginationInfo={setPaginationInfo}
