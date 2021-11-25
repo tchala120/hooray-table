@@ -7,6 +7,8 @@ import { LocaleType, translation } from '../helpers/locale'
 
 import type { FilterConfirmProps } from 'antd/lib/table/interface'
 
+export type DropDownFitlerType = 'SEARCH' | 'FILTER'
+
 export interface TableFilterDropDownProps {
   locale?: LocaleType
   searchInputRef: MutableRefObject<Input | null | undefined>
@@ -14,15 +16,17 @@ export interface TableFilterDropDownProps {
   confirm: (param?: FilterConfirmProps | undefined) => void
   clearFilters?: (() => void) | undefined
   setSelectedKeys: (selectedKeys: React.Key[]) => void
+  setDropDownFilterType?: (filterType: DropDownFitlerType) => void
 }
 
 const TableFilterDropDown: FC<TableFilterDropDownProps> = ({
-  locale,
+  locale = 'thTH',
   searchInputRef,
   selectedKeys,
   confirm,
   clearFilters,
   setSelectedKeys,
+  setDropDownFilterType,
 }) => {
   return (
     <div style={{ padding: 8 }}>
@@ -39,7 +43,10 @@ const TableFilterDropDown: FC<TableFilterDropDownProps> = ({
       <Space size="small">
         <Button
           type="primary"
-          onClick={() => confirm()}
+          onClick={() => {
+            confirm()
+            setDropDownFilterType?.('SEARCH')
+          }}
           icon={<FontAwesomeIcon iconName="search" />}
           size="small"
           style={{ width: 90 }}
@@ -49,7 +56,14 @@ const TableFilterDropDown: FC<TableFilterDropDownProps> = ({
         <Button onClick={clearFilters} size="small" style={{ width: 90 }}>
           {translation('filterDropDown.resetButton', locale)}
         </Button>
-        <Button type="link" size="small" onClick={() => confirm({ closeDropdown: false })}>
+        <Button 
+          type="link"
+          size="small"
+          onClick={() => {
+            confirm({ closeDropdown: false })
+            setDropDownFilterType?.('FILTER')
+          }}
+        >
           {translation('filterDropDown.filterButton', locale)}
         </Button>
       </Space>
