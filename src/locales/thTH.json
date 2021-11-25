@@ -1,8 +1,8 @@
 {
   "selectedRow": "เลือก",
-  "totalItem": "รายการทั้งหมด",
-  "test": {
-    "nested": "สวัสดี"
+  "totalItem": {
+    "plural": "รายการทั้งหมด",
+    "regular": "รายการทั้งหมด"
   },
   "item": {
     "plural": "รายการ",

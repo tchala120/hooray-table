@@ -4,9 +4,6 @@
     "plural": "Total items",
     "regular": "Total item"
   },
-  "test": {
-    "nested": "Hello world"
-  },
   "item": {
     "plural": "items",
     "regular": "item"
