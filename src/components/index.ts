@@ -15,7 +15,7 @@ export { default as HoorayDropDown } from './HoorayDropDown'
 export type { FontAwesomeIconProps } from './FontAwesomeIcon'
 export { default as FontAwesomeIcon } from './FontAwesomeIcon'
 
-export type { TableFilterDropDownProps } from './TableFilterDropDown'
+export type { TableFilterDropDownProps, DropDownFitlerType } from './TableFilterDropDown'
 export { default as TableFilterDropDown } from './TableFilterDropDown'
 
 export type ButtonType = 'primary' | 'default'
