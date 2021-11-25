@@ -1,12 +1,10 @@
 import React, { FC } from 'react'
-import { Table, TablePaginationConfig, TableProps } from 'antd'
+import { Col, Row, Space, Table, TablePaginationConfig, TableProps } from 'antd'
 import styled from 'styled-components'
 import omitBy from 'lodash/omitBy'
 import isNull from 'lodash/isNull'
 import mapValues from 'lodash/mapValues'
 
-import ActionsRow from './ActionsRow'
-import FullWidthSpace from './FullWidthSpace'
 import RowSelectorAction from './RowSelectorAction'
 import HoorayActionButton from './HoorayActionButton'
 
@@ -22,8 +20,8 @@ export interface HoorayTableProps extends Pick<TableProps<any>, 'rowSelection'> 
   dataSource?: any
   columns?: any
   hidePagination?: boolean
-  rowSelectorActionProps: Omit<RowSelectorActionProps, 'locale'>
-  rowSelectorExtraActionProps: HoorayActionButtonProps
+  rowSelectorActionProps?: Omit<RowSelectorActionProps, 'locale'>
+  rowSelectorExtraActionProps?: HoorayActionButtonProps
   setSortInfo?: (sortInfo: SorterResult<any>) => void
   setPaginationInfo?: (paginationInfo: TablePaginationConfig) => void
   setFilterInfo?: (filterInfo: Record<string, FilterValue | null>) => void
@@ -56,27 +54,31 @@ const HoorayTable: FC<HoorayTableProps> = ({
   }
 
   return (
-    <FullWidthSpace direction="vertical" size="small">
+    <Space style={{ width: '100%' }} direction="vertical" size="small">
       <TableTitle>{title}</TableTitle>
 
       <TableContainer>
-        {rowSelectorActionProps.hasSelected && (
+        {rowSelectorActionProps?.hasSelected && (
           <div
             style={{
               borderTop: '1px solid #eee',
             }}
           >
-            <ActionsRow
-              padding="16px 0"
-              leftComponent={<RowSelectorAction {...rowSelectorActionProps} locale={locale} />}
-              rightComponent={
-                rowSelectorExtraActionProps.menuList && rowSelectorExtraActionProps.menuList.length > 0 ? (
-                  <HoorayActionButton {...rowSelectorExtraActionProps} />
-                ) : (
-                  undefined
-                )
-              }
-            />
+            <Row gutter={[16, 16]} align="middle">
+              <Col span={12}>
+                <LeftComponentContainer><RowSelectorAction {...rowSelectorActionProps} locale={locale} /></LeftComponentContainer>
+              </Col>
+              
+              {rowSelectorExtraActionProps?.menuList && rowSelectorExtraActionProps.menuList.length > 0 ? (
+                <Col span={12}>
+                  <RightComponentContainer>
+                    <HoorayActionButton {...rowSelectorExtraActionProps} />
+                  </RightComponentContainer>
+                </Col>
+              ) : (
+                undefined
+              )}
+            </Row>
           </div>
         )}
 
@@ -95,11 +97,13 @@ const HoorayTable: FC<HoorayTableProps> = ({
           }}
         />
 
-        <BottomActionRowSelectionContainer>
-          {rowSelectorActionProps.hasSelected && <RowSelectorAction {...rowSelectorActionProps} locale={locale} />}
-        </BottomActionRowSelectionContainer>
+        {rowSelectorActionProps?.hasSelected && (
+          <BottomActionRowSelectionContainer>
+            <RowSelectorAction {...rowSelectorActionProps} locale={locale} />
+          </BottomActionRowSelectionContainer>
+        )}
       </TableContainer>
-    </FullWidthSpace>
+    </Space>
   )
 }
 
@@ -118,4 +122,14 @@ const TableTitle = styled.h2`
 const BottomActionRowSelectionContainer = styled.div`
   position: absolute;
   bottom: 16px;
+`
+
+const LeftComponentContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
+
+const RightComponentContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `
