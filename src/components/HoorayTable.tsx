@@ -62,6 +62,7 @@ const HoorayTable: FC<HoorayTableProps> = ({
           <div
             style={{
               borderTop: '1px solid #eee',
+              padding: '16px 0'
             }}
           >
             <Row gutter={[16, 16]} align="middle">
