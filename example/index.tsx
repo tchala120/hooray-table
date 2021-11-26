@@ -42,20 +42,19 @@ const App = () => {
   const hasSelected = selectedRowKeys.length > 0
 
   const antdConfig: ConfigProviderProps =  {
-    componentSize: "large",
     space:{
       size: 'large',
     }
   }
 
   console.log('Pagination information', paginationInfo)
-  console.log('Sort information', getSorterNumber(sortInfo?.order))
+  console.log('Sort information', getSorterNumber(sortInfo?.order), sortInfo)
   console.log('Filter information', filterDropDownInfo)
   console.log("Filter drop down type", filterDropDownType)
 
   const getColumnSearchPropsByDataIndex = (dataIndex: string) => getColumnSearchProps({
     dataIndex,
-    locale: 'enUS',
+    locale: 'thTH',
     searchInputRef,
     setDropDownFilterType: (filterType) => setFilterDropDownType(filterType)
   })
@@ -64,17 +63,17 @@ const App = () => {
     {
       ...getColumnSearchPropsByDataIndex('name'),
       title: 'Name',
-      dataIndex: 'name',
+      dataIndex: 'name'
     },
     {
       ...getColumnSearchPropsByDataIndex('age'),
       title: 'Age',
-      dataIndex: 'age',
+      dataIndex: 'age'
     },
     {
       ...getColumnSearchPropsByDataIndex('address'),
       title: 'Address',
-      dataIndex: 'address',
+      dataIndex: 'address'
     },
   ]
 
@@ -85,7 +84,7 @@ const App = () => {
           title="Hello table title"
           dataSource={dataSource}
           columns={columns}
-          locale="enUS"
+          locale="thTH"
           antdConfig={antdConfig}
           rowSelection={rowSelection}
           rowSelectorActionProps={{
@@ -96,7 +95,7 @@ const App = () => {
           }}
           rowSelectorExtraActionProps={{
             menuList,
-            buttonDisplayLimit: 2,
+            buttonDisplayLimit: 3,
             onDropDownMenuClick: (value) => console.log('Secondary extra click', value.key),
           }}
           setSortInfo={setSortInfo}
@@ -118,7 +117,6 @@ const menuList: ActionButtonInfo[] = [
   {
     key: '2',
     label: 'Action 2',
-    type: 'primary',
     icon: 'folder',
     onClick: () => console.log('Action 2'),
   },
@@ -128,6 +126,12 @@ const menuList: ActionButtonInfo[] = [
     icon: 'camera',
     onClick: () => console.log('Action 3'),
   },
+  {
+    key: '4',
+    label: 'Action 3',
+    icon: 'camera',
+    onClick: () => console.log('Action 3'),
+  }
 ]
 
 const Container = styled.div`
