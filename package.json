@@ -3,6 +3,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "description": "A table standard for hooray services base on ant design",
   "files": [
     "dist",
     "src"
