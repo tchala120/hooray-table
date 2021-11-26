@@ -8,7 +8,7 @@ import isNull from 'lodash/isNull'
 import mapValues from 'lodash/mapValues'
 
 import RowSelectorAction from './RowSelectorAction'
-import HoorayActionButton from './ActionButton'
+import ActionButton from './ActionButton'
 
 import { LocaleType, translation } from '../helpers/locale'
 
@@ -80,7 +80,7 @@ const Table: FC<TableProps> = ({
                 {rowSelectorExtraActionProps?.menuList && rowSelectorExtraActionProps.menuList.length > 0 ? (
                   <Col span={12}>
                     <RightComponentContainer>
-                      <HoorayActionButton {...rowSelectorExtraActionProps} />
+                      <ActionButton {...rowSelectorExtraActionProps} />
                     </RightComponentContainer>
                   </Col>
                 ) : (
