@@ -7,7 +7,7 @@ export type { TableProps } from './Table'
 export { default as Table } from './Table'
 
 export type { ActionButtonProps } from './ActionButton'
-export { default as HoorayActionButton } from './ActionButton'
+export { default as ActionButton } from './ActionButton'
 
 export type { DropDownProps } from './DropDown'
 export { default as DropDown } from './DropDown'
