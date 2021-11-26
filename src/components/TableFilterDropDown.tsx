@@ -1,4 +1,4 @@
-import React, { FC, MutableRefObject } from 'react'
+import React, { FC } from 'react'
 import { Button, Input, Space } from 'antd'
 
 import FontAwesomeIcon from './FontAwesomeIcon'
@@ -11,7 +11,6 @@ export type DropDownFitlerType = 'SEARCH' | 'FILTER'
 
 export interface TableFilterDropDownProps {
   locale?: LocaleType
-  searchInputRef: MutableRefObject<Input | null | undefined>
   selectedKeys: React.Key[]
   confirm: (param?: FilterConfirmProps | undefined) => void
   clearFilters?: (() => void) | undefined
@@ -21,7 +20,6 @@ export interface TableFilterDropDownProps {
 
 const TableFilterDropDown: FC<TableFilterDropDownProps> = ({
   locale = 'thTH',
-  searchInputRef,
   selectedKeys,
   confirm,
   clearFilters,
@@ -31,9 +29,6 @@ const TableFilterDropDown: FC<TableFilterDropDownProps> = ({
   return (
     <div style={{ padding: 8 }}>
       <Input
-        ref={(node) => {
-          searchInputRef.current = node
-        }}
         placeholder={translation('filterDropDown.searchInputPlaceholder', locale)}
         value={selectedKeys[0]}
         onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
