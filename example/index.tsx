@@ -28,8 +28,7 @@ const App = () => {
   const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([])
   const [sortInfo, setSortInfo] = React.useState<SorterResult<any>>()
   const [paginationInfo, setPaginationInfo] = React.useState<TablePaginationConfig>()
-  const [filterInfo, setFilterInfo] = React.useState<Record<string, FilterValue | null>>()
-  const [searchInfo, setSearchInfo] = React.useState<Record<string, FilterValue | null>>()
+  const [filterDropDownInfo, setFilterDropDownInfo] = React.useState<Record<string, FilterValue | null>>()
   const [filterDropDownType, setFilterDropDownType] = React.useState<DropDownFitlerType>('SEARCH')
 
   const searchInputRef = React.useRef<Input | null>()
@@ -51,8 +50,7 @@ const App = () => {
 
   console.log('Pagination information', paginationInfo)
   console.log('Sort information', getSorterNumber(sortInfo?.order))
-  console.log('Filter information', filterInfo)
-  console.log('Search information', searchInfo)
+  console.log('Filter information', filterDropDownInfo)
   console.log("Filter drop down type", filterDropDownType)
 
   const getColumnSearchPropsByDataIndex = (dataIndex: string) => getColumnSearchProps({
@@ -103,8 +101,7 @@ const App = () => {
           }}
           setSortInfo={setSortInfo}
           setPaginationInfo={setPaginationInfo}
-          setFilterInfo={setFilterInfo}
-          setSearchInfo={setSearchInfo}
+          setFilterDropDownInfo={setFilterDropDownInfo}
         />
       </Container>
     </ConfigProvider>
