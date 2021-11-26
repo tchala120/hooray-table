@@ -31,8 +31,6 @@ const App = () => {
   const [filterDropDownInfo, setFilterDropDownInfo] = React.useState<Record<string, FilterValue | null>>()
   const [filterDropDownType, setFilterDropDownType] = React.useState<DropDownFitlerType>('SEARCH')
 
-  const searchInputRef = React.useRef<Input | null>()
-
   const rowSelection: TableRowSelection<any> = {
     selectedRowKeys,
     onChange: setSelectedRowKeys,
@@ -55,7 +53,6 @@ const App = () => {
   const getColumnSearchPropsByDataIndex = (dataIndex: string) => getColumnSearchProps({
     dataIndex,
     locale: 'thTH',
-    searchInputRef,
     setDropDownFilterType: (filterType) => setFilterDropDownType(filterType)
   })
 
