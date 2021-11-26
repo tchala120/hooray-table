@@ -29,8 +29,7 @@ export interface TableProps<RecordType extends object = any> extends Pick<AntdTa
   rowSelectorExtraActionProps?: ActionButtonProps
   setSortInfo?: (sortInfo: SorterResult<any>) => void
   setPaginationInfo?: (paginationInfo: TablePaginationConfig) => void
-  setFilterInfo?: (filterInfo: Record<string, FilterValue | null>) => void
-  setSearchInfo?: (filterInfo: Record<string, FilterValue | null>) => void
+  setFilterDropDownInfo?: (filterDropDownInfo: Record<string, FilterValue | null>) => void
 }
 
 const Table: FC<TableProps> = ({
@@ -43,8 +42,7 @@ const Table: FC<TableProps> = ({
   rowSelectorExtraActionProps,
   setSortInfo,
   setPaginationInfo,
-  setFilterInfo,
-  setSearchInfo,
+  setFilterDropDownInfo,
   ...props
 }) => {
   const tablePagination: TablePaginationConfig = {
@@ -102,8 +100,7 @@ const Table: FC<TableProps> = ({
 
               setSortInfo?.(sort)
               setPaginationInfo?.(pagination)
-              setFilterInfo?.(convertValueToString)
-              setSearchInfo?.(convertValueToString)
+              setFilterDropDownInfo?.(convertValueToString)
             }}
           />
 
