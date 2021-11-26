@@ -33,7 +33,7 @@ const ActionButton: FC<ActionButtonProps> = ({ menuList, buttonDisplayLimit = 5,
     )
   }
 
-  return <DropDown menuList={menuList} onDropDownMenuClick={onDropDownMenuClick} />
+  return <DropDown type="primary" menuList={menuList} onDropDownMenuClick={onDropDownMenuClick} />
 }
 
 export default ActionButton
