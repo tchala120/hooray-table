@@ -3,17 +3,18 @@ import { Dropdown as AntdDropDown, Menu } from 'antd'
 
 import FontAwesomeIcon from './FontAwesomeIcon'
 
-import type { ActionButtonInfo, ActionMenuInfo } from '.'
+import type { ActionButtonInfo, ActionMenuInfo, ButtonType } from '.'
 
 export interface DropDownProps {
+  type?: ButtonType
   menuList: ActionButtonInfo[]
   onDropDownMenuClick?: (value: ActionMenuInfo) => void
 }
 
 
-const DropDown: FC<DropDownProps> = ({ menuList, onDropDownMenuClick }) => {
-  const primaryMenu = menuList.find((item) => item.type === 'primary') as ActionButtonInfo
+const DropDown: FC<DropDownProps> = ({ type, menuList, onDropDownMenuClick }) => {
   const existingMenuList = menuList.filter((item) => item.type !== 'primary')
+  const primaryMenu = menuList.find((item) => item.type === 'primary') || existingMenuList[0]
 
   const menu = (
     <Menu onClick={onDropDownMenuClick}>
@@ -26,7 +27,7 @@ const DropDown: FC<DropDownProps> = ({ menuList, onDropDownMenuClick }) => {
   )
 
   return (
-    <AntdDropDown.Button type="primary" onClick={primaryMenu?.onClick} overlay={menu} trigger={['click']}>
+    <AntdDropDown.Button type={type} onClick={primaryMenu?.onClick} overlay={menu} trigger={['click']}>
       {primaryMenu?.label}
     </AntdDropDown.Button>
   )
