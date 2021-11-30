@@ -18,7 +18,7 @@ import type { SorterResult } from 'antd/lib/table/interface'
 import type { FilterValue, ActionButtonProps } from '.'
 import type { RowSelectorActionProps } from './RowSelectorAction'
 
-export interface TableProps<RecordType extends object = any> extends Pick<AntdTableProps<RecordType>, 'rowSelection' | 'pagination'> {
+export interface TableProps<RecordType extends object = any> extends Omit<AntdTableProps<RecordType>, 'title' | 'locale'> {
   title?: string
   antdConfig?: ConfigProviderProps
   locale?: LocaleType
